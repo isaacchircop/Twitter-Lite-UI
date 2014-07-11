@@ -23,22 +23,18 @@ $(document).ready(function(){
 	});
 
 	$("#button").click(function(){
-		var username = $("#username").text();
-		var content = $("#content").text();
+		var username = $("#username").val();
+		var content = $("#content").val();
 		
 		$.ajax({
 			url: 'http://localhost:8080/twitterlite/tweets',
 			type: 'POST',
 			data: {
-			
-				username: $("#username").val(),
-				content: $("#content").val()
-			
+				username: username,
+				content: content
 			},
 			success: function(data){
-			
-				console.log("OK");
-			
+				$("#tweet-container").prepend("<div class='panel panel-default'><div class='panel-body'><b class='red'>@" + username + ":</b> " + content + "</div></div>");
 			}
 		});
 		
