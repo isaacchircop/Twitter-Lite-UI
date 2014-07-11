@@ -31,23 +31,21 @@
 	    </nav>
 
 	    <header class="jumbotron"><h1 align="center"><img class="inline img-responsive" src="Images/logo.png" width="70" height="70"/> Twitterlite</h1></header>
-	    <div>
+	    <div class="content-container">
 	    	<form> 
 				
-				Username: <input id="username" type = "text" name = "username" /> <br>
+				Username: <input  id="username" type = "text" name = "username" /> <br>
 				Message: <input id="content" type = "text" name = "message" /> <br>
-				<input id="button" type = "button" value = "submit" />
+				<input class="btn btn-default" id="button" type = "button" value = "Post" />
 			
 			</form>
-	    </div>
-	    <div class="content-container">
+
+			<br/>
 	    	<div id="tweet-container">
 		    	
 			</div>
+
+    		<button id="moreTweets" type="button" class="btn btn-default">Load more tweets</button>
 		</div>	
-
-    	<button id="moreTweets" type="button" class="btn btn-default">Load more tweets</button>
-
-	    
 	</body>
 </html>
