@@ -1,0 +1,13 @@
+{
+  "name": "twitterlite-app",
+  "version": "1.0.0",
+  "homepage": "https://github.com/isaacchircop/Twitter-Lite-UI",
+  "authors": [
+    "Maria Camenzuli <maria.camenzuli@ixaris.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "~3.2.0",
+    "jquery": "~2.1.1"
+  }
+}
