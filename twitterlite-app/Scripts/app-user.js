@@ -45,7 +45,7 @@ $(document).ready(function(){
 	});
 	
 	$("#tweet-container").on("click", ".user", function(data) {
-		window.location.href = "search-results.html?" + data.currentTarget.innerText.substr(1);
+		window.location.href = "user.html?" + data.currentTarget.innerText.substr(1);
 	})
 	
 	$("#tweet-container").on("click", ".hashtag", function(data) {
