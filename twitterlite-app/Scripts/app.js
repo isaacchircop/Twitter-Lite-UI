@@ -1,10 +1,16 @@
 var offset = 0;
 var limit = 25;
 
+function searchUser() {
+	
+	console.log("searching user");
+
+}
+
 $(document).ready(function(){
 	$.get("http://localhost:8080/twitterlite/messages", { offset:offset, limit:limit }, function(data){
 		for (var i = 0; i < data.length; i++) {
-		    $("#tweet-container").append("<div class='panel panel-default'><div class='panel-body'><b class='red'><span id=\"userMention\" onClick=\"searchUser\">@" + data[i].username + ":</span></b> " + data[i].content + "</div></div>");
+		    $("#tweet-container").append("<div class='panel panel-default'><div class='panel-body'><b class='red'><a class = \"userMention\">@" + data[i].username + ":</a></b> " + data[i].content + "</div></div>");
 		}
 
 		offset = offset + limit;
@@ -65,13 +71,10 @@ $(document).ready(function(){
 		
 	});
 	
-	fucntion searchUser() {
+	$("#tweet-container").on("click", ".userMention", function() {
 	
-		console.log("searching user");
+		console.log("Searching");
 	
-	}
-	
-	
-	
+	})
 	
 });
