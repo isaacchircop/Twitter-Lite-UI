@@ -1,12 +1,6 @@
 var offset = 0;
 var limit = 25;
 
-function searchUser() {
-	
-	console.log("searching user");
-
-}
-
 function appendTweet(tweet){
 	for (var i = 0; i < tweet.hashtags.length; i++) {
 		var regex = new RegExp("#" + tweet.hashtags[i],"i");
