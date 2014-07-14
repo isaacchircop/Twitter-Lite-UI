@@ -10,7 +10,15 @@ function appendTweet(tweet){
 	    
 	}
 
-	$("#tweet-container").append("<div class='panel panel-default'><div class='panel-body'><b class='red'><a class='userMention'>@" + tweet.username + ":</a></b> " + tweet.content + "</div></div>");
+	for (var i = 0; i < tweet.mentions.length; i++) {
+		var regex = new RegExp("@" + tweet.mentions[i],"i");
+	    var menMatches = tweet.content.match(regex);
+	   
+		tweet.content = tweet.content.substr(0, menMatches.index) + "<a class='mention'>@" + tweet.mentions[i] + "</a>" + tweet.content.substr(tweet.mentions[i].length + menMatches.index + 1);
+	    
+	}
+
+	$("#tweet-container").append("<div class='panel panel-default'><div class='panel-body'><b class='red'><a class='user'>@" + tweet.username + "</a>:</b> " + tweet.content + "</div></div>");
 }
 
 $(document).ready(function(){
@@ -34,11 +42,16 @@ $(document).ready(function(){
 		});
 	});
 	
-	$("#tweet-container").on("click", ".userMention", function() {
+	$("#tweet-container").on("click", ".user", function(data) {
 		window.location.href = "search-results.html?" + data.currentTarget.innerText.substr(1);
 	})
 	$("#tweet-container").on("click", ".hashtag", function(data) {
 		window.location.href = "hashtag.html?" + data.currentTarget.innerText.substr(1);
+	})
+	$("#tweet-container").on("click", ".mention", function(data) {
+	
+		window.location.href = "mention.html?" + data.currentTarget.innerText.substr(1);
+		
 	})
 
 });

@@ -22,9 +22,7 @@ function appendTweet(tweet){
 }
 
 $(document).ready(function(){
-
-	$.get("http://localhost:8080/twitterlite/messages/user/" + window.location.search.substr(1), { offset:offset, limit:limit }, function(data){
-	
+	$.get("http://localhost:8080/twitterlite/messages/mention/" + window.location.search.substr(1), { offset:offset, limit:limit }, function(data){
 		for (var i = 0; i < data.length; i++) {
 		   appendTweet(data[i]);
 		}
@@ -33,7 +31,7 @@ $(document).ready(function(){
 	});
 
 	$("#moreTweets").click(function(){
-		$.get("http://localhost:8080/twitterlite/messages/user/" + window.location.search.substr(1), { offset:offset, limit:limit }, function(data){
+		$.get("http://localhost:8080/twitterlite/messages/mention/" + window.location.search.substr(1), { offset:offset, limit:limit }, function(data){
 			if (data.length != 0){
 				for (var i = 0; i < data.length; i++) {
 				    appendTweet(data[i]);
@@ -47,7 +45,6 @@ $(document).ready(function(){
 	$("#tweet-container").on("click", ".user", function(data) {
 		window.location.href = "search-results.html?" + data.currentTarget.innerText.substr(1);
 	})
-	
 	$("#tweet-container").on("click", ".hashtag", function(data) {
 		window.location.href = "hashtag.html?" + data.currentTarget.innerText.substr(1);
 	})
