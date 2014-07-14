@@ -60,6 +60,11 @@ $(document).ready(function(){
 			valid = false;
 			$("#messageError").text("* Empty Content Field");
 		
+		} else if (content.length > 140) {
+		
+			valid = false;
+			$("#messageError").text("* Content must be less than 140 characters");
+		
 		}
 		
 		if (valid == true) {
