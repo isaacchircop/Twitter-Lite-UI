@@ -7,10 +7,22 @@ function searchUser() {
 
 }
 
+function appendTweet(tweet){
+	for (var i = 0; i < tweet.hashtags.length; i++) {
+		var regex = new RegExp("#" + tweet.hashtags[i],"i");
+	    var htMatches = tweet.content.match(regex);
+	   
+		tweet.content = tweet.content.substr(0, htMatches.index) + "<a class='hashtag'>#" + tweet.hashtags[i] + "</a>" + tweet.content.substr(tweet.hashtags[i].length + htMatches.index + 1);
+	    
+	}
+
+	$("#tweet-container").append("<div class='panel panel-default'><div class='panel-body'><b class='red'><a class='userMention'>@" + tweet.username + ":</a></b> " + tweet.content + "</div></div>");
+}
+
 $(document).ready(function(){
 	$.get("http://localhost:8080/twitterlite/messages", { offset:offset, limit:limit }, function(data){
 		for (var i = 0; i < data.length; i++) {
-		    $("#tweet-container").append("<div class='panel panel-default'><div class='panel-body'><b class='red'><a class = \"userMention\">@" + data[i].username + ":</a></b> " + data[i].content + "</div></div>");
+		   appendTweet(data[i]);
 		}
 
 		offset = offset + limit;
@@ -20,7 +32,7 @@ $(document).ready(function(){
 		$.get("http://localhost:8080/twitterlite/messages", { offset:offset, limit:limit }, function(data){
 			if (data.length != 0){
 				for (var i = 0; i < data.length; i++) {
-				    $("#tweet-container").append("<div class='panel panel-default'><div class='panel-body'><b class='red'>@" + data[i].username + ":</b> " + data[i].content + "</div></div>");
+				    appendTweet(data[i]);
 				}
 
 				offset = offset + limit;
@@ -72,9 +84,10 @@ $(document).ready(function(){
 	});
 	
 	$("#tweet-container").on("click", ".userMention", function() {
-	
 		console.log("Searching");
-	
 	})
-	
+	$("#tweet-container").on("click", ".hashtag", function(data) {
+		window.location.href = "hashtag.html?" + data.currentTarget.innerText.substr(1);
+	})
+
 });
