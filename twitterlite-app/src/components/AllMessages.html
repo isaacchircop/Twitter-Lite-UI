@@ -1,0 +1,16 @@
+<div ng-init="init()">
+	<form> 
+		<label>Username:</label> <input  id="username" type = "text" name = "username" ng-model="username" /> <label id="usernameError" ></label><br/>
+		<label>Message:</label> <input id="content" type = "text" name = "message" ng-model="content" /> <label id="messageError" ></label><br/>
+		<input class="btn btn-default" id="button" type = "button" value = "Post" ng-click="post()" />
+	</form>
+	<br/>
+	<div>
+		<div class="panel panel-default" ng-repeat="tweet in tweets">
+			<div class="panel-body">
+				<b class="red"><a class="user">@{{tweet.username}}</a>:</b>{{tweet.content}}
+			</div>
+		</div>
+	</div>
+	<button id="moreTweets" type="button" class="btn btn-default" ng-click="getMoreTweets()">Load more tweets</button>
+</div>
