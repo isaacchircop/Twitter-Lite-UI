@@ -28,4 +28,25 @@ describe('angularjs homepage', function() {
     expect(tweetsDisplay.first().getText()).toContain(testUser);
     expect(tweetsDisplay.first().getText()).toContain(testTweet);
   });
+
+  it('should not accept a tweet without a username', function() {
+    var testUser = '';
+    var testTweet = 'This is a test!';
+    var initialCount = tweetsDisplay.count();
+
+    post(testUser, testTweet);
+
+    expect(tweetsDisplay.count()).toEqual(initialCount);
+  });
+
+  it('should not accept a tweet without content', function() {
+    var testUser = 'tester';
+    var testTweet = '';
+    var initialCount = tweetsDisplay.count();
+
+    post(testUser, testTweet);
+
+    expect(tweetsDisplay.first().getText()).toNotContain('@:');
+    expect(tweetsDisplay.count()).toEqual(initialCount);
+  });
 });
