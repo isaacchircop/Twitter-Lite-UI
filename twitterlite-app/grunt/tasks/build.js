@@ -13,13 +13,13 @@ module.exports = function(grunt) {
         grunt.task.run(['useminPrepare','copy:build','concat']);
         if (isDevEnv) {
             grunt.task.run('copy:temptobuild');
-            grunt.task.run('copy:css');
         } else {
             grunt.task.run('uglify');
         }
         grunt.task.run('usemin');
         grunt.task.run('copy:templates');
         grunt.task.run('copy:images');
+        grunt.task.run('copy:css');
         grunt.task.run('jshint:all');
     });
 };
