@@ -1,8 +1,8 @@
 <div ng-init="init()">
-	<form> 
-		<label>Username:</label> <input  id="username" type = "text" name = "username" ng-model="username" /> <label id="usernameError" ></label><br/>
-		<label>Message:</label> <input id="content" type = "text" name = "message" ng-model="content" /> <label id="messageError" ></label><br/>
-		<input class="btn btn-default" id="postTweet" type = "button" value = "Post" ng-click="post()" />
+	<form ng-submit="post()"> 
+		<label>Username:</label> <input  id="username" type = "text" name = "username" ng-model="username" required /> <label id="usernameError" ></label><br/>
+		<label>Message:</label> <input id="content" type = "text" name = "message" ng-model="content" required /> <label id="messageError" ></label><br/>
+		<input class="btn btn-default" id="postTweet" type="submit" value = "Post" />
 	</form>
 	<br/>
 	<div>
